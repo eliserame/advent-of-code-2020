@@ -1,0 +1,9 @@
+# sbt
+target/
+.bsp/
+
+# intellij idea
+.idea/
+
+# mac
+.DS_Store
