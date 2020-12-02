@@ -1,3 +1,7 @@
+package com.aoc.day1
+
+import com.aoc.InputReader
+
 object ExpenseReport {
 
   private val Year = 2020
@@ -16,7 +20,7 @@ object ExpenseReport {
 
 
   def main(args: Array[String]): Unit = {
-    val input = InputReader.readToIntegerSet("src/main/resources/input-1")
+    val input = InputReader("src/main/resources/input-1").map(_.toInt).toSet
 
     val firstStartTime = System.nanoTime()
     val maybeFirstAnswer = ExpenseReport.fixTwoValues(input)

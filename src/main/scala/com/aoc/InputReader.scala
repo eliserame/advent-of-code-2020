@@ -1,10 +1,12 @@
+package com.aoc
+
 import scala.io.Source
 
 object InputReader {
 
-  def readToIntegerSet(path: String): Set[Int] = {
+  def apply(path: String): Iterable[String] = {
     val source = Source.fromFile(path)
-    val lines = source.getLines().map(_.toInt).toSet
+    val lines = source.getLines().to(Iterable)
     source.close()
 
     lines

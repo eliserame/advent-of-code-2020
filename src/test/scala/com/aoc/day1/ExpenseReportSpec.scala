@@ -1,3 +1,7 @@
+package com.aoc.day1
+
+import com.aoc.UnitSpec
+
 import scala.collection.immutable.HashSet
 
 class ExpenseReportSpec extends UnitSpec {
