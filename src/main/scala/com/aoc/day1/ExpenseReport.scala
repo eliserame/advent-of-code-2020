@@ -20,7 +20,7 @@ object ExpenseReport {
 
 
   def main(args: Array[String]): Unit = {
-    val input = InputReader("src/main/resources/input-1").map(_.toInt).toSet
+    val input = InputReader.readLines("src/main/resources/input-1").map(_.toInt).toSet
 
     val firstStartTime = System.nanoTime()
     val maybeFirstAnswer = ExpenseReport.fixTwoValues(input)

@@ -9,7 +9,7 @@ object PasswordChecker {
   }
 
   def main(args: Array[String]): Unit = {
-    val input = InputReader("src/main/resources/input-2").toList
+    val input = InputReader.readLines("src/main/resources/input-2").toList
     val passwords = input.map(Password(_))
 
     val firstAnswer = count(passwords, SledRentalPolicy)
