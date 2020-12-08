@@ -7,7 +7,7 @@ lazy val root = (project in file("."))
   )
 
 val scalatestVersion = "3.2.2"
-val scalatest = Seq(
+val scalatest = List(
   "org.scalatest" %% "scalatest-flatspec" % scalatestVersion % "test",
   "org.scalatest" %% "scalatest-shouldmatchers" % scalatestVersion % "test"
 )

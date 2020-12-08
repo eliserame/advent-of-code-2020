@@ -3,7 +3,7 @@ package com.aoc.day7
 import com.aoc.InputReader
 
 import scala.annotation.tailrec
-import scala.collection.immutable.{HashMap, HashSet}
+import scala.collection.immutable.{HashMap, HashSet, LinearSeq}
 
 object LuggageProcessing {
 
@@ -24,11 +24,11 @@ object LuggageProcessing {
     }
 
     @tailrec
-    def searchOutermostBags(innerBags: Seq[String], outermostBags: Set[String]): Set[String] = {
+    def searchOutermostBags(innerBags: LinearSeq[String], outermostBags: Set[String]): Set[String] = {
       if (innerBags.isEmpty) outermostBags
       else {
         val bag = innerBags.head
-        val newOutermostBags = outerBagsByColour.getOrElse(bag, HashSet.empty[String])
+        val newOutermostBags = outerBagsByColour.getOrElse(bag, HashSet.empty[String]) -- outermostBags
         searchOutermostBags(innerBags.tail ++ newOutermostBags, outermostBags ++ newOutermostBags)
       }
     }
@@ -44,23 +44,23 @@ object LuggageProcessing {
         case EmptyBag() => bags
         case FullBag(outerBag, content) =>
           val innerBags = innerBag.findAllMatchIn(content).foldLeft(List.empty[(String, Int)]) { case (bags, bagDescription) =>
-            bags :+ (bagDescription.group(2) -> bagDescription.group(1).toInt)
+            (bagDescription.group(2) -> bagDescription.group(1).toInt) +: bags
           }
           bags + (outerBag -> innerBags)
       }
     }
 
     @tailrec
-    def searchInnerBags(outerBags: Seq[(String, Int)], innerBags: Seq[(String, Int)]): Seq[(String, Int)] = {
-      if (outerBags.isEmpty) innerBags.tail
+    def searchInnerBags(outerBags: LinearSeq[(String, Int)], innerBags: LinearSeq[(String, Int)]): LinearSeq[(String, Int)] = {
+      if (outerBags.isEmpty) innerBags
       else {
         val (outerBag, numberOfOuterBag) = outerBags.head
         val newInnerBags = innerBagsByColour.getOrElse(outerBag, Nil).map { case (bag, number) => bag -> numberOfOuterBag * number }
-        searchInnerBags(outerBags.tail ++ newInnerBags, innerBags :+ (outerBag, numberOfOuterBag))
+        searchInnerBags(outerBags.tail ++ newInnerBags, (outerBag, numberOfOuterBag) +: innerBags)
       }
     }
 
-    searchInnerBags(List((colour, 1)), Nil).map(_._2).sum
+    searchInnerBags(List((colour, 1)), Nil).map(_._2).sum - 1
   }
 
 
