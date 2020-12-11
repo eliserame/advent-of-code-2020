@@ -4,11 +4,11 @@ import com.aoc.InputReader
 
 object BoardingPassChecker {
 
-  def highestSeatID(boardingPass: Iterable[BoardingPass]): Int = {
+  def highestSeatID(boardingPass: Seq[BoardingPass]): Int = {
     boardingPass.map(_.seatID).max
   }
 
-  def findSeat(boardingPass: Iterable[BoardingPass], maxSeatID: Int): Option[Int] = {
+  def findSeat(boardingPass: Seq[BoardingPass], maxSeatID: Int): Option[Int] = {
     val seatIDs = maxSeatID to 0 by -1
     val takenSeatIDs = boardingPass.map(_.seatID).toSet
 

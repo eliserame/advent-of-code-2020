@@ -4,12 +4,12 @@ import com.aoc.InputReader
 
 object CustomsDeclaration {
 
-  def sumAnyone(forms: Iterable[String]): Int = {
+  def sumAnyone(forms: Seq[String]): Int = {
     val yesAnswers = forms.map(_.filter(_.isLetter).toSet)
     yesAnswers.map(_.size).sum
   }
 
-  def sumEveryone(forms: Iterable[String]): Int = {
+  def sumEveryone(forms: Seq[String]): Int = {
     val answersByGroup = forms.map(_.split("\n").filterNot(_.isEmpty).map(_.toSet))
     val countYesAnswersByGroup = answersByGroup.map(_.reduce(_ intersect _).size)
 

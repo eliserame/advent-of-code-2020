@@ -4,9 +4,9 @@ import scala.io.Source
 
 object InputReader {
 
-  def readLines(path: String): Iterable[String] = {
+  def readLines(path: String): Seq[String] = {
     val source = Source.fromFile(path)
-    val lines = source.getLines().to(Iterable)
+    val lines = source.getLines().toSeq
     source.close()
 
     lines

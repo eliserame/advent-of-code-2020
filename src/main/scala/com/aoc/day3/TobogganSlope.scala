@@ -17,7 +17,7 @@ object TobogganSlope {
   }
 
   def main(args: Array[String]): Unit = {
-    val input = InputReader.readLines("src/main/resources/input-3").toList
+    val input = InputReader.readLines("src/main/resources/input-3")
     val area = Area(input)
 
     val slope = Slope(3, 1)

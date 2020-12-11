@@ -4,11 +4,11 @@ import com.aoc.InputReader
 
 object PassportScanner {
 
-  def countPassportsContainingAllMandatoryFields(passports: Iterable[Passport]): Int = {
+  def countPassportsContainingAllMandatoryFields(passports: Seq[Passport]): Int = {
     passports.count(_.containsMandatoryFields)
   }
 
-  def countValidPassports(passports: Iterable[Passport]): Int = {
+  def countValidPassports(passports: Seq[Passport]): Int = {
     passports.count(_.isValid)
   }
 
