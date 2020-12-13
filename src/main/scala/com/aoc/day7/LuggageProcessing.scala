@@ -10,7 +10,7 @@ object LuggageProcessing {
   private val EmptyBag = """contain no other bags""".r.unanchored
   private val FullBag = """(.*) bags contain (.*)\.""".r
 
-  def countOutermostBags(rules: Seq[String], colour: String): Int = {
+  def countOutermostBags(rules: LinearSeq[String], colour: String): Int = {
     val innerBag = """\d+ (.*?) bags?,?""".r
 
     val outerBagsByColour = rules.foldLeft(HashMap.empty[String, HashSet[String]]) {
@@ -36,7 +36,7 @@ object LuggageProcessing {
     searchOutermostBags(List(colour), HashSet.empty[String]).size
   }
 
-  def countInnerBags(rules: Seq[String], colour: String): Int = {
+  def countInnerBags(rules: LinearSeq[String], colour: String): Int = {
     val innerBag = """(\d+?) (.*?) bags?,?""".r
 
     val innerBagsByColour = rules.foldLeft(HashMap.empty[String, List[(String, Int)]]) {
@@ -65,7 +65,7 @@ object LuggageProcessing {
 
 
   def main(args: Array[String]): Unit = {
-    val input = InputReader.readLines("src/main/resources/input-7")
+    val input = InputReader.readLines("src/main/resources/input-7").toList
 
     val firstAnswer = countOutermostBags(input, "shiny gold")
     println(s"First answer is '$firstAnswer'")

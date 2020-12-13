@@ -2,9 +2,11 @@ package com.aoc.day2
 
 import com.aoc.InputReader
 
+import scala.collection.immutable.LinearSeq
+
 object PasswordChecker {
 
-  def count(passwords: Seq[Password], policy: Policy): Int = {
+  def count(passwords: LinearSeq[Password], policy: Policy): Int = {
     passwords.count(_.isValid(policy))
   }
 

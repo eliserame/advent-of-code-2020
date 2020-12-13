@@ -26,7 +26,7 @@ object ModelExecutor {
   }
 
   def main(args: Array[String]): Unit = {
-    val input = InputReader.readLines("src/main/resources/input-11")
+    val input = InputReader.readLines("src/main/resources/input-11").toList
     val area = WaitingArea(input)
 
     val firstAnswer = executeModel(area, FirstModel)

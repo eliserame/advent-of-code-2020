@@ -59,7 +59,7 @@ object GameConsole {
     execute(0, List.empty[Int], HashSet.empty[Int], 0)
   }
 
-  def readCode(code: Seq[String]): Try[IndexedSeq[(String, Int)]] = {
+  def readCode(code: LinearSeq[String]): Try[IndexedSeq[(String, Int)]] = {
     val maybeInstructions = code.map { line =>
       line.split("""\s""").toList match {
         case operation :: argument :: Nil if argument.matches("""[+-]\d*""") => Right((operation, argument.toInt))
@@ -79,7 +79,7 @@ object GameConsole {
   }
 
   def main(args: Array[String]): Unit = {
-    val input = InputReader.readLines("src/main/resources/input-8")
+    val input = InputReader.readLines("src/main/resources/input-8").toList
     val code = readCode(input).get
 
     val firstAnswer = getAccumulatorBeforeInfiniteLoop(code).get

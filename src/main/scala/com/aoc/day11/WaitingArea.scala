@@ -1,11 +1,11 @@
 package com.aoc.day11
 
 import scala.annotation.tailrec
-import scala.collection.immutable.HashMap
+import scala.collection.immutable.{HashMap, LinearSeq}
 
 case class WaitingArea(width: Int, length: Int, seats: Map[Seat, Boolean]) {
 
-  def statusOfVisibleSeats(seat: Seat): Seq[Boolean] = {
+  def statusOfVisibleSeats(seat: Seat): LinearSeq[Boolean] = {
     @tailrec
     def statusOfFirstVisibleSeat(xDirection: Int, yDirection: Int, increment: Int): Option[Boolean] = {
       val x = seat.x + increment * xDirection
@@ -38,7 +38,7 @@ case class WaitingArea(width: Int, length: Int, seats: Map[Seat, Boolean]) {
 
 object WaitingArea {
 
-  def apply(description: Seq[String]): WaitingArea = {
+  def apply(description: LinearSeq[String]): WaitingArea = {
     val width = description.head.length
     val length = description.size
     val seats = description.zipWithIndex.foldLeft(HashMap.empty[Seat, Boolean]) { case (seats, (row, y)) =>

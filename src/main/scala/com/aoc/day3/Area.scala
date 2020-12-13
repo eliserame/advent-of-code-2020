@@ -1,6 +1,6 @@
 package com.aoc.day3
 
-import scala.collection.immutable.HashSet
+import scala.collection.immutable.{HashSet, LinearSeq}
 
 case class Area(width: Int, length: Int, trees: Set[(Int, Int)]) {
 
@@ -13,7 +13,7 @@ case class Area(width: Int, length: Int, trees: Set[(Int, Int)]) {
 
 object Area {
 
-  def apply(description: Seq[String]): Area = {
+  def apply(description: LinearSeq[String]): Area = {
     val width = description.head.length
     val (length, trees) = description.foldLeft((0, HashSet.empty[(Int, Int)])) { case ((rowIndex, currentTrees), row) =>
       val treesInRow = currentTrees ++ row.zipWithIndex.filter(_._1 == '#').map(tree => (tree._2, rowIndex))
