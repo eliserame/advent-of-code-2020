@@ -1,6 +1,7 @@
 package com.aoc.day15
 
 import scala.annotation.tailrec
+import scala.collection.immutable.{ArraySeq, HashMap}
 
 object MemoryGame {
 
@@ -16,7 +17,7 @@ object MemoryGame {
       }
     }
 
-    val numbers = startingNumbers.zipWithIndex.map { case (value, index) => value -> (index + 1) }.toMap
+    val numbers = startingNumbers.zipWithIndex.map { case (value, index) => value -> (index + 1) }.to(HashMap)
     val firstTurn = startingNumbers.length
     val lastNumber = startingNumbers.last
 
@@ -24,7 +25,7 @@ object MemoryGame {
   }
 
   def main(args: Array[String]): Unit = {
-    val input = Vector(2,0,1,9,5,19)
+    val input = ArraySeq(2, 0, 1, 9, 5, 19)
 
     val firstAnswer = play(input, 2020)
     println(s"First answer is '$firstAnswer'")

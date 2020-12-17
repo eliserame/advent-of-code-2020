@@ -3,7 +3,7 @@ package com.aoc.day9
 import com.aoc.InputReader
 
 import scala.annotation.tailrec
-import scala.collection.immutable.ArraySeq
+import scala.collection.immutable.{ArraySeq, HashSet}
 
 object XMASReader {
 
@@ -18,7 +18,7 @@ object XMASReader {
       else number
     }
 
-    val window = code.sliding(preambleLength).map(_.toSet)
+    val window = code.sliding(preambleLength).map(_.to(HashSet))
     checkSum(preambleLength, window)
   }
 
@@ -26,12 +26,12 @@ object XMASReader {
     @tailrec
     def searchSumElements(start: Int, end: Int): IndexedSeq[Long] = {
       val sumElements = code.slice(start, end)
-        sumElements.sum match {
-          case `invalidNumber` => sumElements
-          case sum if sum < invalidNumber => searchSumElements(start, end + 1)
-          case _ if (end - start) == 1  => searchSumElements(start + 1, end + 1)
-          case _ => searchSumElements(start + 1, end)
-        }
+      sumElements.sum match {
+        case `invalidNumber` => sumElements
+        case sum if sum < invalidNumber => searchSumElements(start, end + 1)
+        case _ if (end - start) == 1 => searchSumElements(start + 1, end + 1)
+        case _ => searchSumElements(start + 1, end)
+      }
     }
 
     val sumElements = searchSumElements(0, 1).sorted

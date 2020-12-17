@@ -2,6 +2,8 @@ package com.aoc.day3
 
 import com.aoc.UnitSpec
 
+import scala.collection.immutable.HashSet
+
 class AreaSpec extends UnitSpec {
 
   "Area" should "contain width, length and coordinates for all trees" in {
@@ -17,7 +19,7 @@ class AreaSpec extends UnitSpec {
     val area = Area(description)
 
     // Then
-    area shouldBe Area(11, 4, Set(
+    area shouldBe Area(11, 4, HashSet(
       (2, 0),
       (3, 0),
       (0, 1),
@@ -35,7 +37,7 @@ class AreaSpec extends UnitSpec {
 
   it should "return false when coordinates are not a tree" in {
     // Given
-    val area = Area(11, 2, Set((2, 0), (3, 0), (0, 1), (4, 1), (8, 1)))
+    val area = Area(11, 2, HashSet((2, 0), (3, 0), (0, 1), (4, 1), (8, 1)))
     val x = 38
     val y = 1
 
@@ -48,7 +50,7 @@ class AreaSpec extends UnitSpec {
 
   it should "return true when coordinates are a tree" in {
     // Given
-    val area = Area(11, 2, Set((2, 0), (3, 0), (0, 1), (4, 1), (8, 1)))
+    val area = Area(11, 2, HashSet((2, 0), (3, 0), (0, 1), (4, 1), (8, 1)))
     val x = 47
     val y = 0
 

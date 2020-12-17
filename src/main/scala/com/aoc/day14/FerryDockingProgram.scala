@@ -10,7 +10,7 @@ object FerryDockingProgram {
   private val MaskInstruction = """mask = (.*)""".r
   private val MemoryInstruction = """mem\[(\d*)] = (\d*)""".r
 
-  def initialize(program: LinearSeq[String]): BigInt = {
+  def initialize(program: Seq[String]): BigInt = {
     val (memory, _) = program.foldLeft((HashMap.empty[BigInt, BigInt], (BigInt(0), BigInt(0)))) {
       case ((memory, (positionMask, valueMask)), instruction) =>
         instruction match {
@@ -27,7 +27,7 @@ object FerryDockingProgram {
     memory.values.sum
   }
 
-  def initializeVersion2(program: LinearSeq[String]): BigInt = {
+  def initializeVersion2(program: Seq[String]): BigInt = {
     val (memory, _) = program.foldLeft((HashMap.empty[BigInt, BigInt], "")) { case ((memory, mask), instruction) =>
       instruction match {
         case MaskInstruction(newMask) => (memory, newMask)
@@ -41,10 +41,10 @@ object FerryDockingProgram {
     memory.values.sum
   }
 
-  private def getAddresses(address: String, mask: String): LinearSeq[BigInt] = {
+  private def getAddresses(address: String, mask: String): Seq[BigInt] = {
 
     @tailrec
-    def buildAddresses(addresses: LinearSeq[LinearSeq[Char]], bits: LinearSeq[(Char, Char)]): LinearSeq[LinearSeq[Char]] = {
+    def buildAddresses(addresses: Seq[LinearSeq[Char]], bits: LinearSeq[(Char, Char)]): Seq[LinearSeq[Char]] = {
       if (bits.isEmpty) addresses
       else {
         val newAddresses = bits.head match {
@@ -64,7 +64,7 @@ object FerryDockingProgram {
 
 
   def main(args: Array[String]): Unit = {
-    val input = InputReader.readLines("src/main/resources/input-14").toList
+    val input = InputReader.readLines("src/main/resources/input-14")
 
     val firstAnswer = initialize(input)
     println(s"First answer is '$firstAnswer'")

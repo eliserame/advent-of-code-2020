@@ -2,16 +2,14 @@ package com.aoc.day2
 
 import com.aoc.InputReader
 
-import scala.collection.immutable.LinearSeq
-
 object PasswordChecker {
 
-  def count(passwords: LinearSeq[Password], policy: Policy): Int = {
+  def count(passwords: Seq[Password], policy: Policy): Int = {
     passwords.count(_.isValid(policy))
   }
 
   def main(args: Array[String]): Unit = {
-    val input = InputReader.readLines("src/main/resources/input-2").toList
+    val input = InputReader.readLines("src/main/resources/input-2")
     val passwords = input.map(Password(_))
 
     val firstAnswer = count(passwords, SledRentalPolicy)

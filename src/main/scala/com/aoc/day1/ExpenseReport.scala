@@ -2,6 +2,8 @@ package com.aoc.day1
 
 import com.aoc.InputReader
 
+import scala.collection.immutable.HashSet
+
 object ExpenseReport {
 
   private val Year = 2020
@@ -17,9 +19,8 @@ object ExpenseReport {
     maybeMatchingValues.map(_.product)
   }
 
-
   def main(args: Array[String]): Unit = {
-    val input = InputReader.readLines("src/main/resources/input-1").map(_.toInt).toSet
+    val input = InputReader.readLines("src/main/resources/input-1").map(_.toInt).to(HashSet)
 
     val maybeFirstAnswer = ExpenseReport.fixTwoValues(input)
     maybeFirstAnswer match {

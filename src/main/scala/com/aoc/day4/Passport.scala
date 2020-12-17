@@ -2,7 +2,7 @@ package com.aoc.day4
 
 import com.aoc.day4.Passport.MandatoryFields
 
-import scala.collection.immutable.HashSet
+import scala.collection.immutable.{HashMap, HashSet}
 
 case class Passport(pairs: Map[String, String]) {
 
@@ -19,7 +19,7 @@ case class Passport(pairs: Map[String, String]) {
       pairs("pid").matches("""\d{9}""")
   }
 
-  private val eyeColorValidValues = Set("amb", "blu", "brn", "gry", "grn", "hzl", "oth")
+  private val eyeColorValidValues = HashSet("amb", "blu", "brn", "gry", "grn", "hzl", "oth")
 
   private def isYearValid(value: String, min: String, max: String): Boolean = {
     value.matches("""\d{4}""") && min <= value && value <= max
@@ -46,7 +46,7 @@ object Passport {
     val pairs = description.split("""[\s-]""").filterNot(_.isEmpty).map { pair =>
       val tokens = pair.split(":")
       tokens(0) -> tokens(1)
-    }.toMap
+    }.to(HashMap)
 
     Passport(pairs)
   }

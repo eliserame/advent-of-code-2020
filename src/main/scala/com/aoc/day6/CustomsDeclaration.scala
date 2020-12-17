@@ -2,17 +2,17 @@ package com.aoc.day6
 
 import com.aoc.InputReader
 
-import scala.collection.immutable.LinearSeq
+import scala.collection.immutable.HashSet
 
 object CustomsDeclaration {
 
-  def sumAnyone(forms: LinearSeq[String]): Int = {
-    val yesAnswers = forms.map(_.filter(_.isLetter).toSet)
+  def sumAnyone(forms: Seq[String]): Int = {
+    val yesAnswers = forms.map(_.filter(_.isLetter).to(HashSet))
     yesAnswers.map(_.size).sum
   }
 
-  def sumEveryone(forms: LinearSeq[String]): Int = {
-    val answersByGroup = forms.map(_.split("\n").filterNot(_.isEmpty).map(_.toSet))
+  def sumEveryone(forms: Seq[String]): Int = {
+    val answersByGroup = forms.map(_.split("\n").filterNot(_.isEmpty).map(_.to(HashSet)))
     val countYesAnswersByGroup = answersByGroup.map(_.reduce(_ intersect _).size)
 
     countYesAnswersByGroup.sum
@@ -20,7 +20,7 @@ object CustomsDeclaration {
 
   def main(args: Array[String]): Unit = {
     val input = InputReader.readFile("src/main/resources/input-6")
-    val forms = input.split("""(?m)^\s*$""").toList
+    val forms = input.split("""(?m)^\s*$""")
 
     val firstAnswer = sumAnyone(forms)
     println(s"First answer is '$firstAnswer'")
