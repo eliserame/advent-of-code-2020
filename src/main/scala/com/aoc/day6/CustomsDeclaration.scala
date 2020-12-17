@@ -20,7 +20,7 @@ object CustomsDeclaration {
 
   def main(args: Array[String]): Unit = {
     val input = InputReader.readFile("src/main/resources/input-6")
-    val forms = input.split("""(?m)^\s*$""")
+    val forms = input.split("""(?m)^\s*$""").toList
 
     val firstAnswer = sumAnyone(forms)
     println(s"First answer is '$firstAnswer'")

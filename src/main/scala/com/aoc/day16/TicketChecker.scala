@@ -21,7 +21,7 @@ object TicketChecker {
 
     val ticket = splitNotes(1).last.split(",").map(_.toInt).to(ArraySeq)
 
-    val nearbyTickets = splitNotes(2).tail.map(_.split(",").map(_.toInt).to(ArraySeq))
+    val nearbyTickets = splitNotes(2).tail.map(_.split(",").map(_.toInt).to(ArraySeq)).toList
 
     (rules, ticket, nearbyTickets)
   }

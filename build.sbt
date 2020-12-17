@@ -6,6 +6,8 @@ lazy val root = (project in file("."))
     libraryDependencies ++= scalatest
   )
 
+scalacOptions += "-deprecation"
+
 val scalatestVersion = "3.2.2"
 val scalatest = List(
   "org.scalatest" %% "scalatest-flatspec" % scalatestVersion % "test",
